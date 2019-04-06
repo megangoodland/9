@@ -3,8 +3,8 @@
 # Ramses van Zon, March 2016
 #
 
-BLAS_INC?= -fopenmp
-BLAS_LIB?= -fopenmp
+BLAS_INC=-fopenmp
+BLAS_LIB=-fopenmp
 
 CXX=g++
 CXXFLAGS=-O3 -g -march=native -std=c++11 -I${BLAS_INC}
