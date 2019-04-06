@@ -51,11 +51,11 @@ int main(int argc, char *argv[])
   double time = 0.0;    
 
   // checking to see if openMP is working
-  #pragma omp parallel default(none) shared(num_threads)
+  #pragma omp parallel default(none) shared(nthreads)
 	{
-		#pragma omp single
+		#pragma omp single 
 		nthreads = omp_get_num_threads();
-    std::cout << "There were " << nthreads << " threads.\n";
+    		std::cout << "There were " << nthreads << " threads.\n";
 	}
 
   
