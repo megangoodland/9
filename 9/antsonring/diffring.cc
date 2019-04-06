@@ -8,6 +8,8 @@
 
 #include <fstream>
 #include <rarray>
+#include <iostream> 
+#include <omp.h>
 #include "diffring_output.h"
 #include "diffring_timestep.h"
 #include "parameters.h"
@@ -24,6 +26,7 @@ int main(int argc, char *argv[])
   int         Z;  // number of walkers (dummy variable, not used)
   std::string datafile; // filename for output
   double      time_between_output;
+  int nthreads;
 
   // Read parameters from a file given on the command line. 
   // If no file was given, use "params.ini".
@@ -47,6 +50,19 @@ int main(int argc, char *argv[])
   // Setup initial time
   double time = 0.0;    
 
+  // checking to see if openMP is working
+  #pragma omp parallel default(none) shared(num_threads)
+	{
+		#pragma omp single
+		nthreads = omp_get_num_threads();
+    std::cout << "There were " << nthreads << " threads.\n";
+	}
+
+  
+  
+  
+  
+  
   // Open a file for data output
   std::ofstream file;
   diffring_output_init(file, datafile);
